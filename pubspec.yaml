@@ -36,8 +36,14 @@ dependencies:
 
   freezed_annotation: ^0.14.3
 
+  # State management
+  flutter_bloc: 7.2.0
+
   #audioplayer
   just_audio: ^0.9.10
+
+  #UI
+  flutter_svg: ^0.22.0
 
 dev_dependencies:
   flutter_test:
@@ -57,8 +63,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
