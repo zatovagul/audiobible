@@ -2,8 +2,13 @@
 import 'package:bloc_skeleton/common/di/bloc/base_bloc.dart';
 import 'package:bloc_skeleton/common/di/bloc/base_state.dart';
 import 'package:bloc_skeleton/common/di/bloc/common_state.dart';
+import 'package:bloc_skeleton/data/service/database/app_database.dart';
+import 'package:bloc_skeleton/data/service/database/data_parser.dart';
+import 'package:bloc_skeleton/ui/app_navigation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:provider/provider.dart';
 
 part 'home_screen_bloc.freezed.dart';
 

@@ -5,6 +5,7 @@ import 'package:bloc_skeleton/ui/constants/app_colors.dart';
 import 'package:bloc_skeleton/ui/constants/app_images.dart';
 import 'package:bloc_skeleton/ui/constants/app_textstyles.dart';
 import 'package:bloc_skeleton/ui/screens/books/books_main_screen.dart';
+import 'package:bloc_skeleton/ui/screens/books/books_screen_bloc.dart';
 import 'package:bloc_skeleton/ui/screens/home/home_screen_bloc.dart';
 import 'package:bloc_skeleton/ui/screens/player/player_screen.dart';
 import 'package:bloc_skeleton/ui/screens/readers/readers_screen.dart';
@@ -18,9 +19,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_)=>HomeScreenBloc(),
-      child: _HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_)=>HomeScreenBloc()),
+        BlocProvider(create: (_)=>BooksScreenBloc(context),),
+      ],
+      child: _HomeScreen()
     );
   }
 }
