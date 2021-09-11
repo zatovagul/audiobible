@@ -32,6 +32,7 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
   Stream<BaseState> _changePage(int page)async*{
     this.page = page;
     yield HomeState.pageChanged(page);
+    yield CommonState.init();
   }
 
 }

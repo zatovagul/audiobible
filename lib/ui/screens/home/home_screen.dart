@@ -6,6 +6,8 @@ import 'package:bloc_skeleton/ui/constants/app_images.dart';
 import 'package:bloc_skeleton/ui/constants/app_textstyles.dart';
 import 'package:bloc_skeleton/ui/screens/books/books_main_screen.dart';
 import 'package:bloc_skeleton/ui/screens/home/home_screen_bloc.dart';
+import 'package:bloc_skeleton/ui/screens/player/player_screen.dart';
+import 'package:bloc_skeleton/ui/screens/readers/readers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,8 +46,8 @@ class _HomeScreenState extends State<_HomeScreen> {
     pageController = PageController();
     pages = [];
     pages.add(BooksMainScreen());
-    pages.add(Container(color: Colors.black,));
-    pages.add(Container(color: Colors.red));
+    pages.add(PlayerScreen());
+    pages.add(ReadersScreen());
     super.initState();
   }
 
@@ -70,8 +72,8 @@ class _HomeScreenState extends State<_HomeScreen> {
             },
           ),
           bottomNavigationBar: BottomNavigationBar(
-            selectedLabelStyle: AppTextStyles.dark13,
-            unselectedLabelStyle: AppTextStyles.dark13,
+            selectedLabelStyle: AppTextStyles.dark13w500,
+            unselectedLabelStyle: AppTextStyles.dark13w500,
             selectedItemColor: AppColors.dark,
             unselectedItemColor: AppColors.dark.withOpacity(0.5),
             items: [

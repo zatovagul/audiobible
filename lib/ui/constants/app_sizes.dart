@@ -1,5 +1,7 @@
+import 'package:bloc_skeleton/ui/app_navigation.dart';
 import 'package:flutter/cupertino.dart';
 
+final size = AppNavigation.size;
 class AppSizes{
   late double w1, h1, width, height;
   late EdgeInsets padding;
