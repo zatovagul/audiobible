@@ -55,12 +55,24 @@ class _BooksScreen extends StatelessWidget{
                                   style: AppTextStyles.white57w700.copyWith(fontSize: size.height/2/7.8),
                                   textAlign: TextAlign.center,),
                                 SizedBox(height: size.height/2/13.8,),
-                                PopUpMenuReader(
-                                  height: size.height/2/7.3,
-                                  items: [
-                                    "Бондаренко",
-                                    "Козлов"
-                                  ],
+                                BlocBuilder<HomeScreenBloc, BaseState>(
+                                  builder: (context, state) {
+                                    final bloc = context.read<HomeScreenBloc>();
+                                    return FutureBuilder<List<Reader>>(
+                                      future: bloc.readers,
+                                      builder: (context, snapshot) {
+                                        return snapshot.data!=null ?
+                                        PopUpMenuReader(
+                                          height: size.height/2/7.3,
+                                          items: snapshot.data!,
+                                          index: snapshot.data!.indexOf(snapshot.data!.where((element) => element.id == bloc.readerId).first),
+                                          changeReader: (e){
+                                            bloc.add(HomeEvent.changeReader(e));
+                                          },
+                                        ) : SizedBox();
+                                      }
+                                    );
+                                  }
                                 ),
                               ],
                             ),

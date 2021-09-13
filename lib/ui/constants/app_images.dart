@@ -10,6 +10,7 @@ class AppImages{
   static const String secBack = "assets/images/sec_back.svg";
   static const String secNext = "assets/images/sec_next.svg";
   static const String playIcon = "assets/images/play_ic.svg";
+  static const String pauseIcon = "assets/images/pause_ic.svg";
 
   static const String checkBox = "assets/images/checkbox.svg";
 }

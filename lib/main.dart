@@ -7,8 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'data/util/storage_util.dart';
+
 void main()async{
+  WidgetsFlutterBinding.ensureInitialized();
   await initServiceLocator();
+  await StorageUtil.getInstance();
   final db = AppDatabase();
   runApp(MyApp(db: db));
 }

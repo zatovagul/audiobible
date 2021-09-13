@@ -14,3 +14,14 @@ Future<List<BooksCompanion>> parseBooks()async{
       isOld: Value(e['zavet']==1),
   )).toList();
 }
+Future<List<ReadersCompanion>> parseReaders()async{
+  final d = await rootBundle.loadString("assets/data/readers.json");
+  final map = json.decode(d) as List;
+    return map.map((e) =>
+        ReadersCompanion.insert(
+            name: e['name'],
+            info: e['info'],
+            nameId: e['nameId'],
+            audioUrl: Value(e['url'])
+        )).toList();
+}

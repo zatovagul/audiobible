@@ -22,6 +22,19 @@ class _$HomeEventTearOff {
       page,
     );
   }
+
+  _ChangeReader changeReader(Reader reader) {
+    return _ChangeReader(
+      reader,
+    );
+  }
+
+  _OpenChapter openChapter(Chapter chapter, Book book) {
+    return _OpenChapter(
+      chapter,
+      book,
+    );
+  }
 }
 
 /// @nodoc
@@ -29,43 +42,49 @@ const $HomeEvent = _$HomeEventTearOff();
 
 /// @nodoc
 mixin _$HomeEvent {
-  int get page => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeEventCopyWith<HomeEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -73,7 +92,6 @@ mixin _$HomeEvent {
 abstract class $HomeEventCopyWith<$Res> {
   factory $HomeEventCopyWith(HomeEvent value, $Res Function(HomeEvent) then) =
       _$HomeEventCopyWithImpl<$Res>;
-  $Res call({int page});
 }
 
 /// @nodoc
@@ -83,26 +101,13 @@ class _$HomeEventCopyWithImpl<$Res> implements $HomeEventCopyWith<$Res> {
   final HomeEvent _value;
   // ignore: unused_field
   final $Res Function(HomeEvent) _then;
-
-  @override
-  $Res call({
-    Object? page = freezed,
-  }) {
-    return _then(_value.copyWith(
-      page: page == freezed
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class _$ChangePageCopyWith<$Res> implements $HomeEventCopyWith<$Res> {
+abstract class _$ChangePageCopyWith<$Res> {
   factory _$ChangePageCopyWith(
           _ChangePage value, $Res Function(_ChangePage) then) =
       __$ChangePageCopyWithImpl<$Res>;
-  @override
   $Res call({int page});
 }
 
@@ -163,6 +168,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
   }) {
     return changePage(page);
   }
@@ -171,6 +178,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
   }) {
     return changePage?.call(page);
   }
@@ -179,6 +188,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -191,6 +202,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
   }) {
     return changePage(this);
   }
@@ -199,6 +212,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
   }) {
     return changePage?.call(this);
   }
@@ -207,6 +222,8 @@ class _$_ChangePage extends _ChangePage {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -220,11 +237,302 @@ abstract class _ChangePage extends HomeEvent {
   const factory _ChangePage(int page) = _$_ChangePage;
   const _ChangePage._() : super._();
 
-  @override
   int get page => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   _$ChangePageCopyWith<_ChangePage> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$ChangeReaderCopyWith<$Res> {
+  factory _$ChangeReaderCopyWith(
+          _ChangeReader value, $Res Function(_ChangeReader) then) =
+      __$ChangeReaderCopyWithImpl<$Res>;
+  $Res call({Reader reader});
+}
+
+/// @nodoc
+class __$ChangeReaderCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$ChangeReaderCopyWith<$Res> {
+  __$ChangeReaderCopyWithImpl(
+      _ChangeReader _value, $Res Function(_ChangeReader) _then)
+      : super(_value, (v) => _then(v as _ChangeReader));
+
+  @override
+  _ChangeReader get _value => super._value as _ChangeReader;
+
+  @override
+  $Res call({
+    Object? reader = freezed,
+  }) {
+    return _then(_ChangeReader(
+      reader == freezed
+          ? _value.reader
+          : reader // ignore: cast_nullable_to_non_nullable
+              as Reader,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_ChangeReader extends _ChangeReader {
+  const _$_ChangeReader(this.reader) : super._();
+
+  @override
+  final Reader reader;
+
+  @override
+  String toString() {
+    return 'HomeEvent.changeReader(reader: $reader)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ChangeReader &&
+            (identical(other.reader, reader) ||
+                const DeepCollectionEquality().equals(other.reader, reader)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(reader);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ChangeReaderCopyWith<_ChangeReader> get copyWith =>
+      __$ChangeReaderCopyWithImpl<_ChangeReader>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
+  }) {
+    return changeReader(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+  }) {
+    return changeReader?.call(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    required TResult orElse(),
+  }) {
+    if (changeReader != null) {
+      return changeReader(reader);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
+  }) {
+    return changeReader(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+  }) {
+    return changeReader?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    required TResult orElse(),
+  }) {
+    if (changeReader != null) {
+      return changeReader(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ChangeReader extends HomeEvent {
+  const factory _ChangeReader(Reader reader) = _$_ChangeReader;
+  const _ChangeReader._() : super._();
+
+  Reader get reader => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$ChangeReaderCopyWith<_ChangeReader> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$OpenChapterCopyWith<$Res> {
+  factory _$OpenChapterCopyWith(
+          _OpenChapter value, $Res Function(_OpenChapter) then) =
+      __$OpenChapterCopyWithImpl<$Res>;
+  $Res call({Chapter chapter, Book book});
+}
+
+/// @nodoc
+class __$OpenChapterCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$OpenChapterCopyWith<$Res> {
+  __$OpenChapterCopyWithImpl(
+      _OpenChapter _value, $Res Function(_OpenChapter) _then)
+      : super(_value, (v) => _then(v as _OpenChapter));
+
+  @override
+  _OpenChapter get _value => super._value as _OpenChapter;
+
+  @override
+  $Res call({
+    Object? chapter = freezed,
+    Object? book = freezed,
+  }) {
+    return _then(_OpenChapter(
+      chapter == freezed
+          ? _value.chapter
+          : chapter // ignore: cast_nullable_to_non_nullable
+              as Chapter,
+      book == freezed
+          ? _value.book
+          : book // ignore: cast_nullable_to_non_nullable
+              as Book,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_OpenChapter extends _OpenChapter {
+  const _$_OpenChapter(this.chapter, this.book) : super._();
+
+  @override
+  final Chapter chapter;
+  @override
+  final Book book;
+
+  @override
+  String toString() {
+    return 'HomeEvent.openChapter(chapter: $chapter, book: $book)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _OpenChapter &&
+            (identical(other.chapter, chapter) ||
+                const DeepCollectionEquality()
+                    .equals(other.chapter, chapter)) &&
+            (identical(other.book, book) ||
+                const DeepCollectionEquality().equals(other.book, book)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(chapter) ^
+      const DeepCollectionEquality().hash(book);
+
+  @JsonKey(ignore: true)
+  @override
+  _$OpenChapterCopyWith<_OpenChapter> get copyWith =>
+      __$OpenChapterCopyWithImpl<_OpenChapter>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
+  }) {
+    return openChapter(chapter, book);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+  }) {
+    return openChapter?.call(chapter, book);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    required TResult orElse(),
+  }) {
+    if (openChapter != null) {
+      return openChapter(chapter, book);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
+  }) {
+    return openChapter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+  }) {
+    return openChapter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    required TResult orElse(),
+  }) {
+    if (openChapter != null) {
+      return openChapter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OpenChapter extends HomeEvent {
+  const factory _OpenChapter(Chapter chapter, Book book) = _$_OpenChapter;
+  const _OpenChapter._() : super._();
+
+  Chapter get chapter => throw _privateConstructorUsedError;
+  Book get book => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$OpenChapterCopyWith<_OpenChapter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -237,6 +545,18 @@ class _$HomeStateTearOff {
       page,
     );
   }
+
+  ReaderChanged readerChanged(Reader reader) {
+    return ReaderChanged(
+      reader,
+    );
+  }
+
+  ChepterOpened chapterOpened(PlayerInfo playerInfo) {
+    return ChepterOpened(
+      playerInfo,
+    );
+  }
 }
 
 /// @nodoc
@@ -244,43 +564,49 @@ const $HomeState = _$HomeStateTearOff();
 
 /// @nodoc
 mixin _$HomeState {
-  int get page => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) pageChanged,
+    required TResult Function(Reader reader) readerChanged,
+    required TResult Function(PlayerInfo playerInfo) chapterOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PageChanged value) pageChanged,
+    required TResult Function(ReaderChanged value) readerChanged,
+    required TResult Function(ChepterOpened value) chapterOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $HomeStateCopyWith<HomeState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -288,7 +614,6 @@ mixin _$HomeState {
 abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res>;
-  $Res call({int page});
 }
 
 /// @nodoc
@@ -298,26 +623,13 @@ class _$HomeStateCopyWithImpl<$Res> implements $HomeStateCopyWith<$Res> {
   final HomeState _value;
   // ignore: unused_field
   final $Res Function(HomeState) _then;
-
-  @override
-  $Res call({
-    Object? page = freezed,
-  }) {
-    return _then(_value.copyWith(
-      page: page == freezed
-          ? _value.page
-          : page // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $PageChangedCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+abstract class $PageChangedCopyWith<$Res> {
   factory $PageChangedCopyWith(
           PageChanged value, $Res Function(PageChanged) then) =
       _$PageChangedCopyWithImpl<$Res>;
-  @override
   $Res call({int page});
 }
 
@@ -378,6 +690,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int page) pageChanged,
+    required TResult Function(Reader reader) readerChanged,
+    required TResult Function(PlayerInfo playerInfo) chapterOpened,
   }) {
     return pageChanged(page);
   }
@@ -386,6 +700,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
   }) {
     return pageChanged?.call(page);
   }
@@ -394,6 +710,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -406,6 +724,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(PageChanged value) pageChanged,
+    required TResult Function(ReaderChanged value) readerChanged,
+    required TResult Function(ChepterOpened value) chapterOpened,
   }) {
     return pageChanged(this);
   }
@@ -414,6 +734,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
   }) {
     return pageChanged?.call(this);
   }
@@ -422,6 +744,8 @@ class _$PageChanged extends PageChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -435,10 +759,289 @@ abstract class PageChanged extends HomeState {
   const factory PageChanged(int page) = _$PageChanged;
   const PageChanged._() : super._();
 
-  @override
   int get page => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $PageChangedCopyWith<PageChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReaderChangedCopyWith<$Res> {
+  factory $ReaderChangedCopyWith(
+          ReaderChanged value, $Res Function(ReaderChanged) then) =
+      _$ReaderChangedCopyWithImpl<$Res>;
+  $Res call({Reader reader});
+}
+
+/// @nodoc
+class _$ReaderChangedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $ReaderChangedCopyWith<$Res> {
+  _$ReaderChangedCopyWithImpl(
+      ReaderChanged _value, $Res Function(ReaderChanged) _then)
+      : super(_value, (v) => _then(v as ReaderChanged));
+
+  @override
+  ReaderChanged get _value => super._value as ReaderChanged;
+
+  @override
+  $Res call({
+    Object? reader = freezed,
+  }) {
+    return _then(ReaderChanged(
+      reader == freezed
+          ? _value.reader
+          : reader // ignore: cast_nullable_to_non_nullable
+              as Reader,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReaderChanged extends ReaderChanged {
+  const _$ReaderChanged(this.reader) : super._();
+
+  @override
+  final Reader reader;
+
+  @override
+  String toString() {
+    return 'HomeState.readerChanged(reader: $reader)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReaderChanged &&
+            (identical(other.reader, reader) ||
+                const DeepCollectionEquality().equals(other.reader, reader)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(reader);
+
+  @JsonKey(ignore: true)
+  @override
+  $ReaderChangedCopyWith<ReaderChanged> get copyWith =>
+      _$ReaderChangedCopyWithImpl<ReaderChanged>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) pageChanged,
+    required TResult Function(Reader reader) readerChanged,
+    required TResult Function(PlayerInfo playerInfo) chapterOpened,
+  }) {
+    return readerChanged(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+  }) {
+    return readerChanged?.call(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    required TResult orElse(),
+  }) {
+    if (readerChanged != null) {
+      return readerChanged(reader);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PageChanged value) pageChanged,
+    required TResult Function(ReaderChanged value) readerChanged,
+    required TResult Function(ChepterOpened value) chapterOpened,
+  }) {
+    return readerChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+  }) {
+    return readerChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+    required TResult orElse(),
+  }) {
+    if (readerChanged != null) {
+      return readerChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ReaderChanged extends HomeState {
+  const factory ReaderChanged(Reader reader) = _$ReaderChanged;
+  const ReaderChanged._() : super._();
+
+  Reader get reader => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReaderChangedCopyWith<ReaderChanged> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChepterOpenedCopyWith<$Res> {
+  factory $ChepterOpenedCopyWith(
+          ChepterOpened value, $Res Function(ChepterOpened) then) =
+      _$ChepterOpenedCopyWithImpl<$Res>;
+  $Res call({PlayerInfo playerInfo});
+}
+
+/// @nodoc
+class _$ChepterOpenedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $ChepterOpenedCopyWith<$Res> {
+  _$ChepterOpenedCopyWithImpl(
+      ChepterOpened _value, $Res Function(ChepterOpened) _then)
+      : super(_value, (v) => _then(v as ChepterOpened));
+
+  @override
+  ChepterOpened get _value => super._value as ChepterOpened;
+
+  @override
+  $Res call({
+    Object? playerInfo = freezed,
+  }) {
+    return _then(ChepterOpened(
+      playerInfo == freezed
+          ? _value.playerInfo
+          : playerInfo // ignore: cast_nullable_to_non_nullable
+              as PlayerInfo,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ChepterOpened extends ChepterOpened {
+  const _$ChepterOpened(this.playerInfo) : super._();
+
+  @override
+  final PlayerInfo playerInfo;
+
+  @override
+  String toString() {
+    return 'HomeState.chapterOpened(playerInfo: $playerInfo)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ChepterOpened &&
+            (identical(other.playerInfo, playerInfo) ||
+                const DeepCollectionEquality()
+                    .equals(other.playerInfo, playerInfo)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(playerInfo);
+
+  @JsonKey(ignore: true)
+  @override
+  $ChepterOpenedCopyWith<ChepterOpened> get copyWith =>
+      _$ChepterOpenedCopyWithImpl<ChepterOpened>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) pageChanged,
+    required TResult Function(Reader reader) readerChanged,
+    required TResult Function(PlayerInfo playerInfo) chapterOpened,
+  }) {
+    return chapterOpened(playerInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+  }) {
+    return chapterOpened?.call(playerInfo);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    required TResult orElse(),
+  }) {
+    if (chapterOpened != null) {
+      return chapterOpened(playerInfo);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PageChanged value) pageChanged,
+    required TResult Function(ReaderChanged value) readerChanged,
+    required TResult Function(ChepterOpened value) chapterOpened,
+  }) {
+    return chapterOpened(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+  }) {
+    return chapterOpened?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+    required TResult orElse(),
+  }) {
+    if (chapterOpened != null) {
+      return chapterOpened(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ChepterOpened extends HomeState {
+  const factory ChepterOpened(PlayerInfo playerInfo) = _$ChepterOpened;
+  const ChepterOpened._() : super._();
+
+  PlayerInfo get playerInfo => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChepterOpenedCopyWith<ChepterOpened> get copyWith =>
       throw _privateConstructorUsedError;
 }

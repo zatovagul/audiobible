@@ -2,12 +2,16 @@
 import 'package:bloc_skeleton/common/di/bloc/base_bloc.dart';
 import 'package:bloc_skeleton/common/di/bloc/base_state.dart';
 import 'package:bloc_skeleton/common/di/bloc/common_state.dart';
+import 'package:bloc_skeleton/data/constants/app_strings.dart';
 import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:bloc_skeleton/data/service/database/data_parser.dart';
+import 'package:bloc_skeleton/data/util/storage_util.dart';
 import 'package:bloc_skeleton/ui/app_navigation.dart';
+import 'package:bloc_skeleton/ui/constants/string_formats.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
 
 part 'home_screen_bloc.freezed.dart';
@@ -16,22 +20,57 @@ part 'home_screen_bloc.freezed.dart';
 abstract class HomeEvent with _$HomeEvent{
   const HomeEvent._();
   const factory HomeEvent.changePage(int page) = _ChangePage;
+  const factory HomeEvent.changeReader(Reader reader) = _ChangeReader;
+  const factory HomeEvent.openChapter(Chapter chapter, Book book) = _OpenChapter;
 }
 
 @freezed
 abstract class HomeState with _$HomeState implements BaseState{
   const HomeState._();
   const factory HomeState.pageChanged(int page) = PageChanged;
+  const factory HomeState.readerChanged(Reader reader) = ReaderChanged;
+  const factory HomeState.chapterOpened(PlayerInfo playerInfo) = ChepterOpened;
 }
 
 class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
   int page = 0;
+  late ReaderDao _readerDao;
+  late Future<List<Reader>> readers;
+  late List<Reader> readersList;
+  late int? readerId;
 
-  HomeScreenBloc() : super(CommonState.init());
+  late ChapterDao _chapterDao;
+  Stream<List<Chapter>>? chaptersStream;
+
+  late PlayerInfo playerInfo;
+  late AudioPlayer player;
+
+  HomeScreenBloc(BuildContext context) : super(CommonState.init()){
+    playerInfo = PlayerInfo();
+    player = AudioPlayer();
+
+    _chapterDao = Provider.of<ChapterDao>(context, listen: false);
+
+    _readerDao = Provider.of<ReaderDao>(context, listen: false);
+    readers = _readerDao.getAllReaders();
+    getData();
+  }
+
+  getData()async{
+    readerId = StorageUtil.getReader();
+    readersList = await readers;
+    if(readerId==null){
+      readerId = readersList.first.id;
+    }
+  }
 
   @override
   Stream<BaseState> mapEventToState(HomeEvent event) {
-    return event.when(changePage: _changePage);
+    return event.when(
+        changePage: _changePage,
+        changeReader: _changeReader,
+        openChapter: _openChapter
+    );
   }
 
   Stream<BaseState> _changePage(int page)async*{
@@ -40,4 +79,39 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     yield CommonState.init();
   }
 
+  Stream<BaseState> _changeReader(Reader reader)async*{
+    await StorageUtil.setReader(reader.id);
+    this.readerId = reader.id;
+    yield HomeState.readerChanged(reader);
+    yield CommonState.init();
+  }
+
+  Stream<BaseState> _openChapter(Chapter chapter, Book book)async*{
+    yield* _changePage(1);
+    playerInfo..chapter = chapter..book = book;
+    chaptersStream = _chapterDao.watchChaptersByBookId(book.id);
+    loadUrl();
+    yield HomeState.chapterOpened(playerInfo);
+  }
+
+  loadUrl(){
+    String url = AppStrings.url;
+    final nameId = _getReader().nameId;
+    String bookNum = playerInfo.book!.bookNumber.toString();if(bookNum.length==1) bookNum = "0$bookNum";
+    String chapterNum = playerInfo.chapter!.chapterNum.toString();if(chapterNum.length==1) chapterNum = "0$chapterNum";
+    url = "$url/$nameId/$bookNum/$chapterNum.mp3";
+    player.stop();
+    player.setUrl(url);
+    player.load();
+  }
+
+  Reader _getReader(){
+    return readersList.where((element) => element.id==readerId).first;
+  }
+}
+
+class PlayerInfo{
+  Chapter? chapter;
+  Book? book;
+  PlayerInfo({this.chapter, this.book});
 }

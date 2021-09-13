@@ -39,18 +39,23 @@ dependencies:
   # State management
   flutter_bloc: 7.2.0
 
+  #provider
   provider: ^6.0.0
+
+  intl: ^0.17.0
 
   #storage
   moor: ^4.5.0
   path_provider: any
   path: any
+  shared_preferences: ^2.0.7
 
   #audioplayer
   just_audio: ^0.9.10
 
   #UI
   flutter_svg: ^0.22.0
+  audio_video_progress_bar: ^0.9.0
 
 dev_dependencies:
   moor_generator: ^4.5.1

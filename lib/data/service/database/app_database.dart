@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:bloc_skeleton/common/util/logger.dart';
 import 'package:bloc_skeleton/data/model/database/books_table.dart';
 import 'package:bloc_skeleton/data/model/database/chapter_table.dart';
 import 'package:bloc_skeleton/data/model/database/reader_table.dart';
@@ -44,12 +45,16 @@ class ReaderDao extends DatabaseAccessor<AppDatabase> with _$ReaderDaoMixin{
 
   Future insertAllReaders(List<ReadersCompanion> rs) => batch((b) => b.insertAll(readers, rs));
 
+  Future<List<Reader>> getAllReaders() => select(readers).get();
+
   Future deleteAllReaders() => delete(readers).go();
 }
 
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
+    // final fil1 = File(p.join(dbFolder.path, 'audiobible.sqlite'));
+    // await fil1.delete();
     final file = File(p.join(dbFolder.path, 'audiobible.sqlite'));
     return VmDatabase(file);
   });
@@ -70,6 +75,7 @@ class AppDatabase extends _$AppDatabase{
     return MigrationStrategy(
       beforeOpen: (details) async {
         if (details.wasCreated) {
+          logger.i("Database created");
           await insertData();
         }
       },
@@ -88,5 +94,8 @@ class AppDatabase extends _$AppDatabase{
     });
 
     await this.chapterDao.insertAllChapters(chapters);
+
+    final a = await parseReaders();
+    await this.readerDao.insertAllReaders(a);
   }
 }

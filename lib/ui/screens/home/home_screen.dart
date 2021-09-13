@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_)=>HomeScreenBloc()),
+        BlocProvider(create: (_)=>HomeScreenBloc(context)),
         BlocProvider(create: (_)=>BooksScreenBloc(context),),
       ],
       child: _HomeScreen()

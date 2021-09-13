@@ -50,7 +50,7 @@ class _ChaptersScreenState extends State<_ChaptersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TitleSliverPage(url: AppImages.background,title: "Книга",
+    return TitleSliverPage(url: AppImages.background,title: widget.book.name,
       child: StreamBuilder<List<Chapter>>(
       stream: chaptersStream,
       builder: (context, snapshot) {
@@ -59,7 +59,7 @@ class _ChaptersScreenState extends State<_ChaptersScreen> {
           runSpacing: size.w1 * 20,
           children: [
             ...snapshot.data?.map((e) => ChapterListItem(num: e.chapterNum, percentage: 0.3,onPressed: (){
-              homeBloc.add(HomeEvent.changePage(1));
+              homeBloc.add(HomeEvent.openChapter(e, widget.book));
             },))??[],
           ],
         );

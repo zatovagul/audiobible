@@ -1,4 +1,5 @@
 import 'package:bloc_skeleton/data/constants/app_strings.dart';
+import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:bloc_skeleton/ui/constants/app_colors.dart';
 import 'package:bloc_skeleton/ui/constants/app_images.dart';
 import 'package:bloc_skeleton/ui/constants/app_sizes.dart';
@@ -9,7 +10,9 @@ import 'package:flutter_svg/svg.dart';
 
 class ReaderItem extends StatelessWidget {
   final bool chosen;
-  const ReaderItem({Key? key, this.chosen : false}) : super(key: key);
+  final Reader reader;
+  final VoidCallback? onPressed;
+  const ReaderItem({Key? key, this.chosen : false,required this.reader, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +26,9 @@ class ReaderItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("Александр Бондаренко", style: AppTextStyles.dark24w700,),
+          Text(reader.name, style: AppTextStyles.dark24w700,),
           SizedBox(height: size.w1 * 16,),
-          Text(AppStrings.bigText, style: AppTextStyles.dark18P,),
+          Text(reader.info, style: AppTextStyles.dark18P,),
           SizedBox(height: size.w1 * 24,),
           Text("Прослушать отрывок", style: AppTextStyles.dark18w700,),
           SizedBox(height: size.w1 * 16,),
@@ -47,7 +50,7 @@ class ReaderItem extends StatelessWidget {
           ),
           SizedBox(height: size.w1 * 24,),
           OpacityButton(
-            onPressed: (){},
+            onPressed: onPressed??(){},
             child: Container(
               height: size.w1 * 60,
               padding: EdgeInsets.symmetric(horizontal: size.w1 * 24),
