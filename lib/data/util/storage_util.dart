@@ -34,4 +34,6 @@ class StorageUtil{
   static Future<void> setChapter(int s)async{
     _sharedPreferences!.setInt("chapter", s);
   }
+
+  static Future clearChapter()=>_sharedPreferences!.remove("chapter");
 }

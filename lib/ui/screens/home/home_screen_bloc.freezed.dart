@@ -35,6 +35,12 @@ class _$HomeEventTearOff {
       book,
     );
   }
+
+  _UpdateChapter updateChapter(Chapter chapter) {
+    return _UpdateChapter(
+      chapter,
+    );
+  }
 }
 
 /// @nodoc
@@ -47,6 +53,7 @@ mixin _$HomeEvent {
     required TResult Function(int page) changePage,
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -54,6 +61,7 @@ mixin _$HomeEvent {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +69,7 @@ mixin _$HomeEvent {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,6 +78,7 @@ mixin _$HomeEvent {
     required TResult Function(_ChangePage value) changePage,
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,6 +86,7 @@ mixin _$HomeEvent {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -83,6 +94,7 @@ mixin _$HomeEvent {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -170,6 +182,7 @@ class _$_ChangePage extends _ChangePage {
     required TResult Function(int page) changePage,
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
   }) {
     return changePage(page);
   }
@@ -180,6 +193,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
   }) {
     return changePage?.call(page);
   }
@@ -190,6 +204,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -204,6 +219,7 @@ class _$_ChangePage extends _ChangePage {
     required TResult Function(_ChangePage value) changePage,
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
   }) {
     return changePage(this);
   }
@@ -214,6 +230,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
   }) {
     return changePage?.call(this);
   }
@@ -224,6 +241,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -310,6 +328,7 @@ class _$_ChangeReader extends _ChangeReader {
     required TResult Function(int page) changePage,
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
   }) {
     return changeReader(reader);
   }
@@ -320,6 +339,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
   }) {
     return changeReader?.call(reader);
   }
@@ -330,6 +350,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
     required TResult orElse(),
   }) {
     if (changeReader != null) {
@@ -344,6 +365,7 @@ class _$_ChangeReader extends _ChangeReader {
     required TResult Function(_ChangePage value) changePage,
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
   }) {
     return changeReader(this);
   }
@@ -354,6 +376,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
   }) {
     return changeReader?.call(this);
   }
@@ -364,6 +387,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
     required TResult orElse(),
   }) {
     if (changeReader != null) {
@@ -462,6 +486,7 @@ class _$_OpenChapter extends _OpenChapter {
     required TResult Function(int page) changePage,
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
   }) {
     return openChapter(chapter, book);
   }
@@ -472,6 +497,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
   }) {
     return openChapter?.call(chapter, book);
   }
@@ -482,6 +508,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(int page)? changePage,
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
     required TResult orElse(),
   }) {
     if (openChapter != null) {
@@ -496,6 +523,7 @@ class _$_OpenChapter extends _OpenChapter {
     required TResult Function(_ChangePage value) changePage,
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
   }) {
     return openChapter(this);
   }
@@ -506,6 +534,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
   }) {
     return openChapter?.call(this);
   }
@@ -516,6 +545,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(_ChangePage value)? changePage,
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
     required TResult orElse(),
   }) {
     if (openChapter != null) {
@@ -533,6 +563,152 @@ abstract class _OpenChapter extends HomeEvent {
   Book get book => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$OpenChapterCopyWith<_OpenChapter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$UpdateChapterCopyWith<$Res> {
+  factory _$UpdateChapterCopyWith(
+          _UpdateChapter value, $Res Function(_UpdateChapter) then) =
+      __$UpdateChapterCopyWithImpl<$Res>;
+  $Res call({Chapter chapter});
+}
+
+/// @nodoc
+class __$UpdateChapterCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$UpdateChapterCopyWith<$Res> {
+  __$UpdateChapterCopyWithImpl(
+      _UpdateChapter _value, $Res Function(_UpdateChapter) _then)
+      : super(_value, (v) => _then(v as _UpdateChapter));
+
+  @override
+  _UpdateChapter get _value => super._value as _UpdateChapter;
+
+  @override
+  $Res call({
+    Object? chapter = freezed,
+  }) {
+    return _then(_UpdateChapter(
+      chapter == freezed
+          ? _value.chapter
+          : chapter // ignore: cast_nullable_to_non_nullable
+              as Chapter,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UpdateChapter extends _UpdateChapter {
+  const _$_UpdateChapter(this.chapter) : super._();
+
+  @override
+  final Chapter chapter;
+
+  @override
+  String toString() {
+    return 'HomeEvent.updateChapter(chapter: $chapter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _UpdateChapter &&
+            (identical(other.chapter, chapter) ||
+                const DeepCollectionEquality().equals(other.chapter, chapter)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(chapter);
+
+  @JsonKey(ignore: true)
+  @override
+  _$UpdateChapterCopyWith<_UpdateChapter> get copyWith =>
+      __$UpdateChapterCopyWithImpl<_UpdateChapter>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
+  }) {
+    return updateChapter(chapter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
+  }) {
+    return updateChapter?.call(chapter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
+    required TResult orElse(),
+  }) {
+    if (updateChapter != null) {
+      return updateChapter(chapter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
+  }) {
+    return updateChapter(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
+  }) {
+    return updateChapter?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
+    required TResult orElse(),
+  }) {
+    if (updateChapter != null) {
+      return updateChapter(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateChapter extends HomeEvent {
+  const factory _UpdateChapter(Chapter chapter) = _$_UpdateChapter;
+  const _UpdateChapter._() : super._();
+
+  Chapter get chapter => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$UpdateChapterCopyWith<_UpdateChapter> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

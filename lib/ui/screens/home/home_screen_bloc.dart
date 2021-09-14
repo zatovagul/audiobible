@@ -22,6 +22,7 @@ abstract class HomeEvent with _$HomeEvent{
   const factory HomeEvent.changePage(int page) = _ChangePage;
   const factory HomeEvent.changeReader(Reader reader) = _ChangeReader;
   const factory HomeEvent.openChapter(Chapter chapter, Book book) = _OpenChapter;
+  const factory HomeEvent.updateChapter(Chapter chapter) = _UpdateChapter;
 }
 
 @freezed
@@ -62,6 +63,19 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     if(readerId==null){
       readerId = readersList.first.id;
     }
+    player.positionStream.listen((event) {
+      if(player.playing){
+        final chapter = playerInfo.chapter;
+        final num = player.position.inMilliseconds/(player.duration?.inMilliseconds??1);
+        _updateC(chapter!.copyWith(percentage: num));
+      }
+    });
+    final chapterId = StorageUtil.getChapter();
+    if(chapterId!=null){
+      playerInfo = await _chapterDao.findChapterWithBookById(chapterId);
+      chaptersStream = _chapterDao.watchChaptersByBookId(playerInfo.book!.id);
+      loadUrl();
+    }
   }
 
   @override
@@ -69,7 +83,8 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     return event.when(
         changePage: _changePage,
         changeReader: _changeReader,
-        openChapter: _openChapter
+        openChapter: _openChapter,
+        updateChapter: _updateChapter
     );
   }
 
@@ -84,6 +99,7 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     this.readerId = reader.id;
     yield HomeState.readerChanged(reader);
     yield CommonState.init();
+    loadUrl();
   }
 
   Stream<BaseState> _openChapter(Chapter chapter, Book book)async*{
@@ -92,21 +108,34 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     chaptersStream = _chapterDao.watchChaptersByBookId(book.id);
     loadUrl();
     yield HomeState.chapterOpened(playerInfo);
+    StorageUtil.setChapter(chapter.id);
   }
 
-  loadUrl(){
+  loadUrl()async{
     String url = AppStrings.url;
     final nameId = _getReader().nameId;
     String bookNum = playerInfo.book!.bookNumber.toString();if(bookNum.length==1) bookNum = "0$bookNum";
     String chapterNum = playerInfo.chapter!.chapterNum.toString();if(chapterNum.length==1) chapterNum = "0$chapterNum";
     url = "$url/$nameId/$bookNum/$chapterNum.mp3";
-    player.stop();
+    player.pause();
     player.setUrl(url);
-    player.load();
+    await player.setAudioSource(AudioSource.uri(Uri.parse(url)));
+    player.seek((player.duration??Duration())*playerInfo.chapter!.percentage);
+  }
+
+  Stream<BaseState> _updateChapter(Chapter e)async*{
+    _updateC(e);
+  }
+  _updateC(Chapter e)async{
+    await _chapterDao.updateChapter(e);
   }
 
   Reader _getReader(){
     return readersList.where((element) => element.id==readerId).first;
+  }
+
+  dispose(){
+    player.dispose();
   }
 }
 

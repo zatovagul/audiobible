@@ -94,4 +94,9 @@ class _HomeScreenState extends State<_HomeScreen> {
       }),
     );
   }
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
 }

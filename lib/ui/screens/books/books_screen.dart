@@ -1,5 +1,6 @@
 import 'package:bloc_skeleton/common/di/bloc/base_state.dart';
 import 'package:bloc_skeleton/data/constants/app_strings.dart';
+import 'package:bloc_skeleton/data/model/database/chapter_table.dart';
 import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:bloc_skeleton/ui/app_navigation.dart';
 import 'package:bloc_skeleton/ui/constants/app_colors.dart';
@@ -107,14 +108,15 @@ class _BooksScreen extends StatelessWidget{
                               ),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(vertical: size.w1 * 24),
-                                child: StreamBuilder<List<Book>>(
+                                child: StreamBuilder<List<ChapterWithBook>>(
                                     stream: bloc.booksStream,
                                     builder: (context, snapshot) {
+                                      final list = ChapterWithBook.makenormalList(snapshot.data??[]);
                                       return Wrap(
                                         direction: Axis.horizontal,
                                         runSpacing: size.w1 * 20,
                                         children: [
-                                          ...(snapshot.data?.where((e) => e.isOld == bloc.isOld).map((e) => BookListItem(book: e, percentage: 0.6,)))??[],
+                                          ...(list.where((e) => e.book.isOld == bloc.isOld).map((e) => BookListItem(book: e.book, percentage: e.percentage,))),
                                         ],
                                       );
                                     }

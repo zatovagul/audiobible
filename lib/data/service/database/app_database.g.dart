@@ -882,6 +882,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
 
 mixin _$BookDaoMixin on DatabaseAccessor<AppDatabase> {
   $BooksTable get books => attachedDatabase.books;
+  $ChaptersTable get chapters => attachedDatabase.chapters;
 }
 mixin _$ChapterDaoMixin on DatabaseAccessor<AppDatabase> {
   $BooksTable get books => attachedDatabase.books;

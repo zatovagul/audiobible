@@ -7,12 +7,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
+import 'common/util/logger.dart';
 import 'data/util/storage_util.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
+  // await JustAudioBackground.init(
+  //   androidNotificationChannelId: 'ru.audiobible.android.channel.audio',
+  //   androidNotificationChannelName: 'Audio playback',
+  //   androidNotificationOngoing: true,
+  // );
   await initServiceLocator();
   await StorageUtil.getInstance();
+  logger.i("App Main -)");
   final db = AppDatabase();
   runApp(MyApp(db: db));
 }

@@ -5,6 +5,7 @@ import 'package:bloc_skeleton/data/model/database/books_table.dart';
 import 'package:bloc_skeleton/data/model/database/chapter_table.dart';
 import 'package:bloc_skeleton/data/model/database/reader_table.dart';
 import 'package:bloc_skeleton/data/service/database/data_parser.dart';
+import 'package:bloc_skeleton/ui/screens/home/home_screen_bloc.dart';
 import 'package:moor/ffi.dart';
 import 'package:moor/moor.dart';
 import 'package:path_provider/path_provider.dart';
@@ -12,7 +13,7 @@ import 'package:path/path.dart' as p;
 
 part 'app_database.g.dart';
 
-@UseDao(tables: [Books])
+@UseDao(tables: [Books, Chapters])
 class BookDao extends DatabaseAccessor<AppDatabase> with _$BookDaoMixin{
   final AppDatabase db;
   BookDao(this.db) : super(db);
@@ -23,7 +24,10 @@ class BookDao extends DatabaseAccessor<AppDatabase> with _$BookDaoMixin{
   Future deleteAllBooks() => delete(books).go();
 
   Future<List<Book>> getAllBooks() => select(books).get();
-  Stream<List<Book>> watchAllBooks() => select(books).watch();
+  Stream<List<ChapterWithBook>> watchAllBooks() => select(books)
+      .join([innerJoin(chapters, books.id.equalsExp(chapters.bookId))])
+      .map((tr) => ChapterWithBook(tr.readTable(chapters), tr.readTable(books)))
+      .watch();
 }
 
 @UseDao(tables: [Books, Chapters])
@@ -32,8 +36,12 @@ class ChapterDao extends DatabaseAccessor<AppDatabase> with _$ChapterDaoMixin{
   ChapterDao(this.db) : super(db);
 
   Future insertAllChapters(List<ChaptersCompanion> cs) => batch((b) => b.insertAll(chapters, cs));
+  Future updateChapter(Chapter chapter) => update(chapters).replace(chapter);
 
   Stream<List<Chapter>> watchChaptersByBookId(int bookId) => (select(chapters)..where((tbl) => tbl.bookId.equals(bookId))).watch();
+  Future<PlayerInfo> findChapterWithBookById(int chapterId) => (select(chapters)..where((tbl) => tbl.id.equals(chapterId)))
+      .join([leftOuterJoin(books, chapters.bookId.equalsExp(books.id))])
+      .map((tr) => PlayerInfo(chapter: tr.readTable(chapters),book:  tr.readTable(books))).getSingle();
 
   Future deleteAllChapters() => delete(chapters).go();
 }
@@ -65,7 +73,9 @@ LazyDatabase _openConnection() {
   daos: [BookDao, ChapterDao, ReaderDao]
 )
 class AppDatabase extends _$AppDatabase{
-  AppDatabase() : super(_openConnection());
+  AppDatabase() : super(_openConnection()){
+    print("APPDATABASE CREATED");
+  }
 
   @override
   int get schemaVersion => 1;
@@ -74,10 +84,14 @@ class AppDatabase extends _$AppDatabase{
   MigrationStrategy get migration {
     return MigrationStrategy(
       beforeOpen: (details) async {
-        if (details.wasCreated) {
+        print(details.versionNow);
+        print(details.versionBefore);
+        ///Протестировать не дублируется ли БД
+        if(details.wasCreated) {
           logger.i("Database created");
           await insertData();
         }
+        await customStatement('PRAGMA foreign_keys = ON');
       },
     );
   }

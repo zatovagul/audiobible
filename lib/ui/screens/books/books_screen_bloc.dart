@@ -1,6 +1,7 @@
 import 'package:bloc_skeleton/common/di/bloc/base_bloc.dart';
 import 'package:bloc_skeleton/common/di/bloc/base_state.dart';
 import 'package:bloc_skeleton/common/di/bloc/common_state.dart';
+import 'package:bloc_skeleton/data/model/database/chapter_table.dart';
 import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +26,7 @@ abstract class BookState with _$BookState implements BaseState{
 class BooksScreenBloc extends Bloc<BookEvent, BaseState> with BaseBloc{
   bool isOld = true;
   late BookDao bookDao;
-  late Stream<List<Book>> booksStream;
+  late Stream<List<ChapterWithBook>> booksStream;
 
   BooksScreenBloc(BuildContext context) : super(CommonState.init()){
     bookDao = Provider.of<BookDao>(context, listen: false);

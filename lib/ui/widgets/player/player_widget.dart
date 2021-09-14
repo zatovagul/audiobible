@@ -1,3 +1,4 @@
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:bloc_skeleton/ui/app_navigation.dart';
 import 'package:bloc_skeleton/ui/constants/app_colors.dart';
@@ -24,12 +25,15 @@ class PlayerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<Duration>(
         stream: player.positionStream,
-        builder: (context, position) {
+        builder: (context, snapshot) {
+          if(chapter!=null && player.duration!=null) {
+            // context.read<HomeScreenBloc>().add(HomeEvent.updateChapter(chapter!.copyWith(percentage: player.position.inMilliseconds/player.duration!.inMilliseconds)));
+          }
+          final position = snapshot.data;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: chapter == null
-                ? []
-                : [
+            children: chapter == null? []:
+            [
                     SizedBox(
                       height: size.w1 * 20,
                     ),
@@ -45,14 +49,22 @@ class PlayerWidget extends StatelessWidget {
                       style: AppTextStyles.dark18,
                     ),
                     Container(
-                      height: size.w1 * 28,
+                      height: size.w1 * 25,
                     ),
-                    Text("${position.data}"),
-                    Container(
-                      height: size.w1,
-                      width: double.infinity,
-                      color: AppColors.dark,
-                      margin: EdgeInsets.symmetric(horizontal: 20),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: size.w1 * 15),
+                      child: ProgressBar(
+                        progress: (position??Duration())>Duration()?position!:Duration(),
+                        total: player.duration??Duration(),
+                        buffered: player.bufferedPosition,
+                        progressBarColor: AppColors.brown,
+                        bufferedBarColor: AppColors.brown.withOpacity(0.35),
+                        baseBarColor: AppColors.brown.withOpacity(0.3),
+                        thumbColor:  AppColors.brown,
+                        onSeek: (d){
+                            player.seek(d);
+                      },
+                      ),
                     ),
                     Container(
                       height: size.w1 * 38,

@@ -1,4 +1,4 @@
-package com.example.bloc_skeleton
+package ru.audiobible.android
 
 import io.flutter.embedding.android.FlutterActivity
 

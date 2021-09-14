@@ -8,6 +8,7 @@ import 'package:bloc_skeleton/ui/screens/home/home_screen_bloc.dart';
 import 'package:bloc_skeleton/ui/widgets/list_items/book_list_item.dart';
 import 'package:bloc_skeleton/ui/widgets/list_items/chapter_list_item.dart';
 import 'package:bloc_skeleton/ui/widgets/slivers/title_sliver_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -50,21 +51,24 @@ class _ChaptersScreenState extends State<_ChaptersScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return TitleSliverPage(url: AppImages.background,title: widget.book.name,
-      child: StreamBuilder<List<Chapter>>(
-      stream: chaptersStream,
-      builder: (context, snapshot) {
-        return Wrap(
-          direction: Axis.horizontal,
-          runSpacing: size.w1 * 20,
-          children: [
-            ...snapshot.data?.map((e) => ChapterListItem(num: e.chapterNum, percentage: 0.3,onPressed: (){
-              homeBloc.add(HomeEvent.openChapter(e, widget.book));
-            },))??[],
-          ],
-        );
-      }
-    ),);
+    return Scaffold(
+      backgroundColor: AppColors.darkWhite,
+      body: TitleSliverPage(url: AppImages.background,title: widget.book.name,
+        child: StreamBuilder<List<Chapter>>(
+        stream: chaptersStream,
+        builder: (context, snapshot) {
+          return Wrap(
+            direction: Axis.horizontal,
+            runSpacing: size.w1 * 20,
+            children: [
+              ...snapshot.data?.map((e) => ChapterListItem(num: e.chapterNum, percentage: e.percentage,onPressed: (){
+                homeBloc.add(HomeEvent.openChapter(e, widget.book));
+              },))??[],
+            ],
+          );
+        }
+      ),),
+    );
   }
 
   AppSizes get size => AppNavigation.size;
