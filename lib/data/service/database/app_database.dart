@@ -73,9 +73,7 @@ LazyDatabase _openConnection() {
   daos: [BookDao, ChapterDao, ReaderDao]
 )
 class AppDatabase extends _$AppDatabase{
-  AppDatabase() : super(_openConnection()){
-    print("APPDATABASE CREATED");
-  }
+  AppDatabase() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;

@@ -5,6 +5,7 @@ import 'package:bloc_skeleton/ui/constants/app_sizes.dart';
 import 'package:bloc_skeleton/ui/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 
 import 'common/util/logger.dart';
@@ -12,14 +13,14 @@ import 'data/util/storage_util.dart';
 
 void main()async{
   WidgetsFlutterBinding.ensureInitialized();
-  // await JustAudioBackground.init(
-  //   androidNotificationChannelId: 'ru.audiobible.android.channel.audio',
-  //   androidNotificationChannelName: 'Audio playback',
-  //   androidNotificationOngoing: true,
-  // );
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'ru.audiobible.android.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
   await initServiceLocator();
   await StorageUtil.getInstance();
-  logger.i("App Main -)");
+  logger.i("App Main started");
   final db = AppDatabase();
   runApp(MyApp(db: db));
 }

@@ -53,7 +53,7 @@ dependencies:
 
   #audioplayer
   just_audio: ^0.9.10
-  #just_audio_background: ^0.0.1-beta.1
+  just_audio_background: ^0.0.1-beta.1
 
   #UI
   flutter_svg: ^0.22.0

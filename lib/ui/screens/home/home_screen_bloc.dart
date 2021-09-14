@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:provider/provider.dart';
 
 part 'home_screen_bloc.freezed.dart';
@@ -70,12 +71,12 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
         _updateC(chapter!.copyWith(percentage: num));
       }
     });
-    final chapterId = StorageUtil.getChapter();
-    if(chapterId!=null){
-      playerInfo = await _chapterDao.findChapterWithBookById(chapterId);
-      chaptersStream = _chapterDao.watchChaptersByBookId(playerInfo.book!.id);
-      loadUrl();
-    }
+
+
+    final chapterId = StorageUtil.getChapter()??1;
+    playerInfo = await _chapterDao.findChapterWithBookById(chapterId);
+    chaptersStream = _chapterDao.watchChaptersByBookId(playerInfo.book!.id);
+    loadUrl();
   }
 
   @override
@@ -112,14 +113,24 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
   }
 
   loadUrl()async{
+    final chapter = playerInfo.chapter!;
+    final book = playerInfo.book!;
+
     String url = AppStrings.url;
     final nameId = _getReader().nameId;
-    String bookNum = playerInfo.book!.bookNumber.toString();if(bookNum.length==1) bookNum = "0$bookNum";
-    String chapterNum = playerInfo.chapter!.chapterNum.toString();if(chapterNum.length==1) chapterNum = "0$chapterNum";
+    String bookNum = book.bookNumber.toString();if(bookNum.length==1) bookNum = "0$bookNum";
+    String chapterNum = chapter.chapterNum.toString();if(chapterNum.length==1) chapterNum = "0$chapterNum";
     url = "$url/$nameId/$bookNum/$chapterNum.mp3";
-    player.pause();
+    await player.pause();
     player.setUrl(url);
-    await player.setAudioSource(AudioSource.uri(Uri.parse(url)));
+    await player.setAudioSource(
+        AudioSource.uri(Uri.parse(url),
+          tag: MediaItem(
+            id: "${chapter.id}", title: "${chapter.chapterNum} глава",
+              album: book.name,
+            artist: book.name,
+            artUri: Uri.parse("https://www.pexels.com/photo/woman-leaning-back-on-tree-trunk-using-black-dslr-camera-during-day-610293/")
+          )));
     player.seek((player.duration??Duration())*playerInfo.chapter!.percentage);
   }
 
