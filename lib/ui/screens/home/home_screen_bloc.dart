@@ -129,7 +129,7 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
             id: "${chapter.id}", title: "${chapter.chapterNum} глава",
               album: book.name,
             artist: book.name,
-            artUri: Uri.parse("https://www.pexels.com/photo/woman-leaning-back-on-tree-trunk-using-black-dslr-camera-during-day-610293/")
+            // artUri: Uri.parse("https://www.pexels.com/photo/woman-leaning-back-on-tree-trunk-using-black-dslr-camera-during-day-610293/")
           )));
     player.seek((player.duration??Duration())*playerInfo.chapter!.percentage);
   }
