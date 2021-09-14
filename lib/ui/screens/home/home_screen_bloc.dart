@@ -122,7 +122,6 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
     String chapterNum = chapter.chapterNum.toString();if(chapterNum.length==1) chapterNum = "0$chapterNum";
     url = "$url/$nameId/$bookNum/$chapterNum.mp3";
     await player.pause();
-    player.setUrl(url);
     await player.setAudioSource(
         AudioSource.uri(Uri.parse(url),
           tag: MediaItem(
@@ -131,7 +130,8 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
             artist: book.name,
             // artUri: Uri.parse("https://www.pexels.com/photo/woman-leaning-back-on-tree-trunk-using-black-dslr-camera-during-day-610293/")
           )));
-    player.seek((player.duration??Duration())*playerInfo.chapter!.percentage);
+    final a = await player.load();
+    player.seek((a??Duration())*playerInfo.chapter!.percentage);
   }
 
   Stream<BaseState> _updateChapter(Chapter e)async*{
