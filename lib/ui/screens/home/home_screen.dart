@@ -48,6 +48,12 @@ class _HomeScreenState extends State<_HomeScreen> {
     bloc = context.read<HomeScreenBloc>();
 
     pageController = PageController();
+    pageController.addListener(() {
+      if(bloc.reader!=null){
+        bloc.reader=null;
+        bloc.loadUrl(false);
+      }
+    });
     pages = [];
     pages.add(BooksMainScreen());
     pages.add(PlayerScreen());

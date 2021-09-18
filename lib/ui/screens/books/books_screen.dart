@@ -23,9 +23,18 @@ class BooksScreen extends StatelessWidget {
 }
 
 
-class _BooksScreen extends StatelessWidget{
+class _BooksScreen extends StatefulWidget{
   const _BooksScreen({Key? key}) : super(key: key);
 
+  @override
+  State<_BooksScreen> createState() => _BooksScreenState();
+}
+
+class _BooksScreenState extends State<_BooksScreen> with AutomaticKeepAliveClientMixin<_BooksScreen>{
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BooksScreenBloc, BaseState>(
@@ -146,4 +155,7 @@ class _BooksScreen extends StatelessWidget{
   );
 
   AppSizes get size => AppNavigation.size;
+
+  @override
+  bool get wantKeepAlive => true;
 }

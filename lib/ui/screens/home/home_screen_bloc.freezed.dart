@@ -41,6 +41,12 @@ class _$HomeEventTearOff {
       chapter,
     );
   }
+
+  _PlayReader playReader(Reader reader) {
+    return _PlayReader(
+      reader,
+    );
+  }
 }
 
 /// @nodoc
@@ -54,6 +60,7 @@ mixin _$HomeEvent {
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
     required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +69,7 @@ mixin _$HomeEvent {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -70,6 +78,7 @@ mixin _$HomeEvent {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -79,6 +88,7 @@ mixin _$HomeEvent {
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
     required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +97,7 @@ mixin _$HomeEvent {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +106,7 @@ mixin _$HomeEvent {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -183,6 +195,7 @@ class _$_ChangePage extends _ChangePage {
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
     required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
   }) {
     return changePage(page);
   }
@@ -194,6 +207,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
   }) {
     return changePage?.call(page);
   }
@@ -205,6 +219,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -220,6 +235,7 @@ class _$_ChangePage extends _ChangePage {
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
     required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
   }) {
     return changePage(this);
   }
@@ -231,6 +247,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
   }) {
     return changePage?.call(this);
   }
@@ -242,6 +259,7 @@ class _$_ChangePage extends _ChangePage {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
     required TResult orElse(),
   }) {
     if (changePage != null) {
@@ -329,6 +347,7 @@ class _$_ChangeReader extends _ChangeReader {
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
     required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
   }) {
     return changeReader(reader);
   }
@@ -340,6 +359,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
   }) {
     return changeReader?.call(reader);
   }
@@ -351,6 +371,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
     required TResult orElse(),
   }) {
     if (changeReader != null) {
@@ -366,6 +387,7 @@ class _$_ChangeReader extends _ChangeReader {
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
     required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
   }) {
     return changeReader(this);
   }
@@ -377,6 +399,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
   }) {
     return changeReader?.call(this);
   }
@@ -388,6 +411,7 @@ class _$_ChangeReader extends _ChangeReader {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
     required TResult orElse(),
   }) {
     if (changeReader != null) {
@@ -487,6 +511,7 @@ class _$_OpenChapter extends _OpenChapter {
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
     required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
   }) {
     return openChapter(chapter, book);
   }
@@ -498,6 +523,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
   }) {
     return openChapter?.call(chapter, book);
   }
@@ -509,6 +535,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
     required TResult orElse(),
   }) {
     if (openChapter != null) {
@@ -524,6 +551,7 @@ class _$_OpenChapter extends _OpenChapter {
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
     required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
   }) {
     return openChapter(this);
   }
@@ -535,6 +563,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
   }) {
     return openChapter?.call(this);
   }
@@ -546,6 +575,7 @@ class _$_OpenChapter extends _OpenChapter {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
     required TResult orElse(),
   }) {
     if (openChapter != null) {
@@ -634,6 +664,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     required TResult Function(Reader reader) changeReader,
     required TResult Function(Chapter chapter, Book book) openChapter,
     required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
   }) {
     return updateChapter(chapter);
   }
@@ -645,6 +676,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
   }) {
     return updateChapter?.call(chapter);
   }
@@ -656,6 +688,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     TResult Function(Reader reader)? changeReader,
     TResult Function(Chapter chapter, Book book)? openChapter,
     TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
     required TResult orElse(),
   }) {
     if (updateChapter != null) {
@@ -671,6 +704,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     required TResult Function(_ChangeReader value) changeReader,
     required TResult Function(_OpenChapter value) openChapter,
     required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
   }) {
     return updateChapter(this);
   }
@@ -682,6 +716,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
   }) {
     return updateChapter?.call(this);
   }
@@ -693,6 +728,7 @@ class _$_UpdateChapter extends _UpdateChapter {
     TResult Function(_ChangeReader value)? changeReader,
     TResult Function(_OpenChapter value)? openChapter,
     TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
     required TResult orElse(),
   }) {
     if (updateChapter != null) {
@@ -709,6 +745,158 @@ abstract class _UpdateChapter extends HomeEvent {
   Chapter get chapter => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   _$UpdateChapterCopyWith<_UpdateChapter> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$PlayReaderCopyWith<$Res> {
+  factory _$PlayReaderCopyWith(
+          _PlayReader value, $Res Function(_PlayReader) then) =
+      __$PlayReaderCopyWithImpl<$Res>;
+  $Res call({Reader reader});
+}
+
+/// @nodoc
+class __$PlayReaderCopyWithImpl<$Res> extends _$HomeEventCopyWithImpl<$Res>
+    implements _$PlayReaderCopyWith<$Res> {
+  __$PlayReaderCopyWithImpl(
+      _PlayReader _value, $Res Function(_PlayReader) _then)
+      : super(_value, (v) => _then(v as _PlayReader));
+
+  @override
+  _PlayReader get _value => super._value as _PlayReader;
+
+  @override
+  $Res call({
+    Object? reader = freezed,
+  }) {
+    return _then(_PlayReader(
+      reader == freezed
+          ? _value.reader
+          : reader // ignore: cast_nullable_to_non_nullable
+              as Reader,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_PlayReader extends _PlayReader {
+  const _$_PlayReader(this.reader) : super._();
+
+  @override
+  final Reader reader;
+
+  @override
+  String toString() {
+    return 'HomeEvent.playReader(reader: $reader)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _PlayReader &&
+            (identical(other.reader, reader) ||
+                const DeepCollectionEquality().equals(other.reader, reader)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(reader);
+
+  @JsonKey(ignore: true)
+  @override
+  _$PlayReaderCopyWith<_PlayReader> get copyWith =>
+      __$PlayReaderCopyWithImpl<_PlayReader>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) changePage,
+    required TResult Function(Reader reader) changeReader,
+    required TResult Function(Chapter chapter, Book book) openChapter,
+    required TResult Function(Chapter chapter) updateChapter,
+    required TResult Function(Reader reader) playReader,
+  }) {
+    return playReader(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
+  }) {
+    return playReader?.call(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? changePage,
+    TResult Function(Reader reader)? changeReader,
+    TResult Function(Chapter chapter, Book book)? openChapter,
+    TResult Function(Chapter chapter)? updateChapter,
+    TResult Function(Reader reader)? playReader,
+    required TResult orElse(),
+  }) {
+    if (playReader != null) {
+      return playReader(reader);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ChangePage value) changePage,
+    required TResult Function(_ChangeReader value) changeReader,
+    required TResult Function(_OpenChapter value) openChapter,
+    required TResult Function(_UpdateChapter value) updateChapter,
+    required TResult Function(_PlayReader value) playReader,
+  }) {
+    return playReader(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
+  }) {
+    return playReader?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ChangePage value)? changePage,
+    TResult Function(_ChangeReader value)? changeReader,
+    TResult Function(_OpenChapter value)? openChapter,
+    TResult Function(_UpdateChapter value)? updateChapter,
+    TResult Function(_PlayReader value)? playReader,
+    required TResult orElse(),
+  }) {
+    if (playReader != null) {
+      return playReader(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PlayReader extends HomeEvent {
+  const factory _PlayReader(Reader reader) = _$_PlayReader;
+  const _PlayReader._() : super._();
+
+  Reader get reader => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  _$PlayReaderCopyWith<_PlayReader> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -733,6 +921,12 @@ class _$HomeStateTearOff {
       playerInfo,
     );
   }
+
+  ReaderPlayed readerPlayed(Reader reader) {
+    return ReaderPlayed(
+      reader,
+    );
+  }
 }
 
 /// @nodoc
@@ -745,6 +939,7 @@ mixin _$HomeState {
     required TResult Function(int page) pageChanged,
     required TResult Function(Reader reader) readerChanged,
     required TResult Function(PlayerInfo playerInfo) chapterOpened,
+    required TResult Function(Reader reader) readerPlayed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -752,6 +947,7 @@ mixin _$HomeState {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -759,6 +955,7 @@ mixin _$HomeState {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -767,6 +964,7 @@ mixin _$HomeState {
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(ReaderChanged value) readerChanged,
     required TResult Function(ChepterOpened value) chapterOpened,
+    required TResult Function(ReaderPlayed value) readerPlayed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -774,6 +972,7 @@ mixin _$HomeState {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -781,6 +980,7 @@ mixin _$HomeState {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -868,6 +1068,7 @@ class _$PageChanged extends PageChanged {
     required TResult Function(int page) pageChanged,
     required TResult Function(Reader reader) readerChanged,
     required TResult Function(PlayerInfo playerInfo) chapterOpened,
+    required TResult Function(Reader reader) readerPlayed,
   }) {
     return pageChanged(page);
   }
@@ -878,6 +1079,7 @@ class _$PageChanged extends PageChanged {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
   }) {
     return pageChanged?.call(page);
   }
@@ -888,6 +1090,7 @@ class _$PageChanged extends PageChanged {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -902,6 +1105,7 @@ class _$PageChanged extends PageChanged {
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(ReaderChanged value) readerChanged,
     required TResult Function(ChepterOpened value) chapterOpened,
+    required TResult Function(ReaderPlayed value) readerPlayed,
   }) {
     return pageChanged(this);
   }
@@ -912,6 +1116,7 @@ class _$PageChanged extends PageChanged {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
   }) {
     return pageChanged?.call(this);
   }
@@ -922,6 +1127,7 @@ class _$PageChanged extends PageChanged {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
     required TResult orElse(),
   }) {
     if (pageChanged != null) {
@@ -1008,6 +1214,7 @@ class _$ReaderChanged extends ReaderChanged {
     required TResult Function(int page) pageChanged,
     required TResult Function(Reader reader) readerChanged,
     required TResult Function(PlayerInfo playerInfo) chapterOpened,
+    required TResult Function(Reader reader) readerPlayed,
   }) {
     return readerChanged(reader);
   }
@@ -1018,6 +1225,7 @@ class _$ReaderChanged extends ReaderChanged {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
   }) {
     return readerChanged?.call(reader);
   }
@@ -1028,6 +1236,7 @@ class _$ReaderChanged extends ReaderChanged {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
     required TResult orElse(),
   }) {
     if (readerChanged != null) {
@@ -1042,6 +1251,7 @@ class _$ReaderChanged extends ReaderChanged {
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(ReaderChanged value) readerChanged,
     required TResult Function(ChepterOpened value) chapterOpened,
+    required TResult Function(ReaderPlayed value) readerPlayed,
   }) {
     return readerChanged(this);
   }
@@ -1052,6 +1262,7 @@ class _$ReaderChanged extends ReaderChanged {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
   }) {
     return readerChanged?.call(this);
   }
@@ -1062,6 +1273,7 @@ class _$ReaderChanged extends ReaderChanged {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
     required TResult orElse(),
   }) {
     if (readerChanged != null) {
@@ -1149,6 +1361,7 @@ class _$ChepterOpened extends ChepterOpened {
     required TResult Function(int page) pageChanged,
     required TResult Function(Reader reader) readerChanged,
     required TResult Function(PlayerInfo playerInfo) chapterOpened,
+    required TResult Function(Reader reader) readerPlayed,
   }) {
     return chapterOpened(playerInfo);
   }
@@ -1159,6 +1372,7 @@ class _$ChepterOpened extends ChepterOpened {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
   }) {
     return chapterOpened?.call(playerInfo);
   }
@@ -1169,6 +1383,7 @@ class _$ChepterOpened extends ChepterOpened {
     TResult Function(int page)? pageChanged,
     TResult Function(Reader reader)? readerChanged,
     TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
     required TResult orElse(),
   }) {
     if (chapterOpened != null) {
@@ -1183,6 +1398,7 @@ class _$ChepterOpened extends ChepterOpened {
     required TResult Function(PageChanged value) pageChanged,
     required TResult Function(ReaderChanged value) readerChanged,
     required TResult Function(ChepterOpened value) chapterOpened,
+    required TResult Function(ReaderPlayed value) readerPlayed,
   }) {
     return chapterOpened(this);
   }
@@ -1193,6 +1409,7 @@ class _$ChepterOpened extends ChepterOpened {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
   }) {
     return chapterOpened?.call(this);
   }
@@ -1203,6 +1420,7 @@ class _$ChepterOpened extends ChepterOpened {
     TResult Function(PageChanged value)? pageChanged,
     TResult Function(ReaderChanged value)? readerChanged,
     TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
     required TResult orElse(),
   }) {
     if (chapterOpened != null) {
@@ -1219,5 +1437,151 @@ abstract class ChepterOpened extends HomeState {
   PlayerInfo get playerInfo => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChepterOpenedCopyWith<ChepterOpened> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ReaderPlayedCopyWith<$Res> {
+  factory $ReaderPlayedCopyWith(
+          ReaderPlayed value, $Res Function(ReaderPlayed) then) =
+      _$ReaderPlayedCopyWithImpl<$Res>;
+  $Res call({Reader reader});
+}
+
+/// @nodoc
+class _$ReaderPlayedCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
+    implements $ReaderPlayedCopyWith<$Res> {
+  _$ReaderPlayedCopyWithImpl(
+      ReaderPlayed _value, $Res Function(ReaderPlayed) _then)
+      : super(_value, (v) => _then(v as ReaderPlayed));
+
+  @override
+  ReaderPlayed get _value => super._value as ReaderPlayed;
+
+  @override
+  $Res call({
+    Object? reader = freezed,
+  }) {
+    return _then(ReaderPlayed(
+      reader == freezed
+          ? _value.reader
+          : reader // ignore: cast_nullable_to_non_nullable
+              as Reader,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ReaderPlayed extends ReaderPlayed {
+  const _$ReaderPlayed(this.reader) : super._();
+
+  @override
+  final Reader reader;
+
+  @override
+  String toString() {
+    return 'HomeState.readerPlayed(reader: $reader)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ReaderPlayed &&
+            (identical(other.reader, reader) ||
+                const DeepCollectionEquality().equals(other.reader, reader)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(reader);
+
+  @JsonKey(ignore: true)
+  @override
+  $ReaderPlayedCopyWith<ReaderPlayed> get copyWith =>
+      _$ReaderPlayedCopyWithImpl<ReaderPlayed>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int page) pageChanged,
+    required TResult Function(Reader reader) readerChanged,
+    required TResult Function(PlayerInfo playerInfo) chapterOpened,
+    required TResult Function(Reader reader) readerPlayed,
+  }) {
+    return readerPlayed(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
+  }) {
+    return readerPlayed?.call(reader);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int page)? pageChanged,
+    TResult Function(Reader reader)? readerChanged,
+    TResult Function(PlayerInfo playerInfo)? chapterOpened,
+    TResult Function(Reader reader)? readerPlayed,
+    required TResult orElse(),
+  }) {
+    if (readerPlayed != null) {
+      return readerPlayed(reader);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(PageChanged value) pageChanged,
+    required TResult Function(ReaderChanged value) readerChanged,
+    required TResult Function(ChepterOpened value) chapterOpened,
+    required TResult Function(ReaderPlayed value) readerPlayed,
+  }) {
+    return readerPlayed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
+  }) {
+    return readerPlayed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(PageChanged value)? pageChanged,
+    TResult Function(ReaderChanged value)? readerChanged,
+    TResult Function(ChepterOpened value)? chapterOpened,
+    TResult Function(ReaderPlayed value)? readerPlayed,
+    required TResult orElse(),
+  }) {
+    if (readerPlayed != null) {
+      return readerPlayed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ReaderPlayed extends HomeState {
+  const factory ReaderPlayed(Reader reader) = _$ReaderPlayed;
+  const ReaderPlayed._() : super._();
+
+  Reader get reader => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ReaderPlayedCopyWith<ReaderPlayed> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -2,13 +2,16 @@ import 'package:bloc_skeleton/ui/app_navigation.dart';
 import 'package:bloc_skeleton/ui/constants/app_colors.dart';
 import 'package:bloc_skeleton/ui/constants/app_sizes.dart';
 import 'package:bloc_skeleton/ui/constants/app_textstyles.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class TitleSliverPage extends StatefulWidget {
   final String url, title;
   final Widget child;
   final Color? backgroundColor;
-  const TitleSliverPage({Key? key,required this.url, this.title: "",required this.child, this.backgroundColor}) : super(key: key);
+  final ScrollController? controller;
+  final Widget? leading;
+  const TitleSliverPage({Key? key,required this.url, this.title: "",required this.child, this.backgroundColor, this.controller, this.leading}) : super(key: key);
 
   @override
   _TitleSliverPageState createState() => _TitleSliverPageState();
@@ -23,7 +26,7 @@ class _TitleSliverPageState extends State<TitleSliverPage> {
   @override
   void initState() {
     maximum = size.height * 0.37 - 50;
-    controller = ScrollController();
+    controller = widget.controller??ScrollController();
     controller.addListener(() {
       setState(() {
         offset = controller.offset;
@@ -66,12 +69,14 @@ class _TitleSliverPageState extends State<TitleSliverPage> {
         SizedBox(
             height: size.height*0.5,
             width: size.width,
-            child: Image.asset(widget.url, fit: BoxFit.cover,)),
+            child: CachedNetworkImage(imageUrl: widget.url, fit: BoxFit.cover,)
+        ),
         CustomScrollView(
           controller: controller,
           physics: ClampingScrollPhysics(),
           slivers: [
             SliverAppBar(
+              leading: widget.leading,
               backgroundColor: Colors.transparent,
               expandedHeight: maximum + 50,
               flexibleSpace: FlexibleSpaceBar(

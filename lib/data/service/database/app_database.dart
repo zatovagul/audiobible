@@ -39,6 +39,7 @@ class ChapterDao extends DatabaseAccessor<AppDatabase> with _$ChapterDaoMixin{
   Future updateChapter(Chapter chapter) => update(chapters).replace(chapter);
 
   Stream<List<Chapter>> watchChaptersByBookId(int bookId) => (select(chapters)..where((tbl) => tbl.bookId.equals(bookId))).watch();
+  Future<List<Chapter>> getChaptersByBookId(int bookId) => (select(chapters)..where((tbl) => tbl.bookId.equals(bookId))).get();
   Future<PlayerInfo> findChapterWithBookById(int chapterId) => (select(chapters)..where((tbl) => tbl.id.equals(chapterId)))
       .join([leftOuterJoin(books, chapters.bookId.equalsExp(books.id))])
       .map((tr) => PlayerInfo(chapter: tr.readTable(chapters),book:  tr.readTable(books))).getSingle();

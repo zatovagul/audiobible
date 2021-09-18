@@ -54,6 +54,7 @@ class PlayerWidget extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: size.w1 * 15),
                       child: ProgressBar(
+                        thumbCanPaintOutsideBar: false,
                         progress: (position??Duration())>Duration()?position!:Duration(),
                         total: player.duration??Duration(),
                         buffered: player.bufferedPosition,
@@ -61,6 +62,7 @@ class PlayerWidget extends StatelessWidget {
                         bufferedBarColor: AppColors.brown.withOpacity(0.35),
                         baseBarColor: AppColors.brown.withOpacity(0.3),
                         thumbColor:  AppColors.brown,
+                        timeLabelType: TimeLabelType.remainingTime,
                         onSeek: (d){
                             player.seek(d);
                       },
@@ -113,7 +115,11 @@ class PlayerWidget extends StatelessWidget {
                                 AppImages.secNext,
                                 width: size.w1 * 38,
                               ),
-                              onPressed: () {player.seek(Duration(milliseconds: player.position.inMilliseconds + 30000));}),
+                              onPressed: () {
+                                player.seek(Duration(milliseconds: player.position.inMilliseconds + 30000));
+                                if(player.position>(player.duration??Duration()) && player.duration!=null)
+                                  player.seek(player.duration!);
+                              }),
                           OpacityButton(
                               child: SvgPicture.asset(
                                 AppImages.skipNext,

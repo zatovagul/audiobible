@@ -1,3 +1,4 @@
+import 'package:bloc_skeleton/data/constants/app_strings.dart';
 import 'package:bloc_skeleton/data/service/database/app_database.dart';
 import 'package:bloc_skeleton/ui/app_navigation.dart';
 import 'package:bloc_skeleton/ui/constants/app_colors.dart';
@@ -53,7 +54,9 @@ class _ChaptersScreenState extends State<_ChaptersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkWhite,
-      body: TitleSliverPage(url: AppImages.background,title: widget.book.name,
+      body: TitleSliverPage(
+        url: "${AppStrings.imageUrl}${widget.book.id}.jpg",
+        title: widget.book.name,
         child: StreamBuilder<List<Chapter>>(
         stream: chaptersStream,
         builder: (context, snapshot) {
