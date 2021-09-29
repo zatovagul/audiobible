@@ -63,41 +63,47 @@ class _HomeScreenState extends State<_HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<HomeScreenBloc, BaseState>(
-      listener: (context, state){
-        if(state is PageChanged){
-          pageController.animateToPage(state.page, duration: Duration(milliseconds: 100), curve: Curves.easeIn);
-        }
+    return WillPopScope(
+      onWillPop: ()async{
+        AppNavigation.booksPop();
+        return false;
       },
-      child: BlocBuilder<HomeScreenBloc, BaseState>(
-          builder: (context, state){
-        return Scaffold(
-          body: PageView(
-            controller: pageController,
-            children: pages,
-            onPageChanged: (i){
-              setState(() {
-                bloc.page = i;
-              });
-            },
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            selectedLabelStyle: AppTextStyles.dark13w500,
-            unselectedLabelStyle: AppTextStyles.dark13w500,
-            selectedItemColor: AppColors.dark,
-            unselectedItemColor: AppColors.dark.withOpacity(0.5),
-            items: [
-              BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.home_bar, color: AppColors.dark.withOpacity(bloc.page==0?1:0.5),), label: AppStrings.home_bar),
-              BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.play_bar, color: AppColors.dark.withOpacity(bloc.page==1?1:0.5)), label: AppStrings.play_bar),
-              BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.readers_bar, color: AppColors.dark.withOpacity(bloc.page==2?1:0.5)), label: AppStrings.readers_bar),
-            ],
-            currentIndex: bloc.page,
-            onTap: (i){
-              bloc.add(HomeEvent.changePage(i));
-            },
-          ),
-        );
-      }),
+      child: BlocListener<HomeScreenBloc, BaseState>(
+        listener: (context, state){
+          if(state is PageChanged){
+            pageController.animateToPage(state.page, duration: Duration(milliseconds: 100), curve: Curves.easeIn);
+          }
+        },
+        child: BlocBuilder<HomeScreenBloc, BaseState>(
+            builder: (context, state){
+          return Scaffold(
+            body: PageView(
+              controller: pageController,
+              children: pages,
+              onPageChanged: (i){
+                setState(() {
+                  bloc.page = i;
+                });
+              },
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              selectedLabelStyle: AppTextStyles.dark13w500,
+              unselectedLabelStyle: AppTextStyles.dark13w500,
+              selectedItemColor: AppColors.dark,
+              unselectedItemColor: AppColors.dark.withOpacity(0.5),
+              items: [
+                BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.home_bar, color: AppColors.dark.withOpacity(bloc.page==0?1:0.5),), label: AppStrings.home_bar),
+                BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.play_bar, color: AppColors.dark.withOpacity(bloc.page==1?1:0.5)), label: AppStrings.play_bar),
+                BottomNavigationBarItem(icon: SvgPicture.asset(AppImages.readers_bar, color: AppColors.dark.withOpacity(bloc.page==2?1:0.5)), label: AppStrings.readers_bar),
+              ],
+              currentIndex: bloc.page,
+              onTap: (i){
+                bloc.add(HomeEvent.changePage(i));
+              },
+            ),
+          );
+        }),
+      ),
     );
   }
   @override

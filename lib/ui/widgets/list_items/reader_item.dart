@@ -9,9 +9,11 @@ import 'package:bloc_skeleton/ui/constants/app_textstyles.dart';
 import 'package:bloc_skeleton/ui/screens/home/home_screen_bloc.dart';
 import 'package:bloc_skeleton/ui/widgets/buttons/opacity_button.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReaderItem extends StatelessWidget {
   final bool chosen;
@@ -26,6 +28,21 @@ class ReaderItem extends StatelessWidget {
         final bloc = context.read<HomeScreenBloc>();
         final player = bloc.player;
         bool isPlay = bloc.reader?.id == reader.id;
+
+        var text = reader.info;
+        final words = text.split("\n");
+        String? link;
+        words.forEach((e) {
+          print(e);
+          print("QW");
+          if(e.startsWith("http")){
+            text = text.replaceAll(e, "");
+            link = e.trim();
+            print(text.contains(e));
+            print("LINK $link");
+            print("link $text");
+          }
+        });
         return Container(
           padding: EdgeInsets.all(size.w1 * 24),
           margin: EdgeInsets.only(bottom: size.w1 * 20, left: size.w1 * 20, right: size.w1 * 20),
@@ -38,7 +55,20 @@ class ReaderItem extends StatelessWidget {
             children: [
               Text(reader.name, style: AppTextStyles.dark24w700,),
               SizedBox(height: size.w1 * 16,),
-              Text(reader.info, style: AppTextStyles.dark18P,),
+              RichText(text: TextSpan(
+                text: text,
+                style: AppTextStyles.dark18P,
+                children: [
+                  if(link!=null)
+                    TextSpan(
+                      text: link!,
+                      style: AppTextStyles.dark18P.copyWith(color: Colors.blueAccent),
+                      recognizer: TapGestureRecognizer()..onTap = (){
+                        launch(link!);
+                      }
+                    )
+                ]
+              ),),
               SizedBox(height: size.w1 * 24,),
               Text("Прослушать отрывок", style: AppTextStyles.dark18w700,),
               SizedBox(height: size.w1 * 16,),

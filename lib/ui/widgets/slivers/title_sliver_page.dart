@@ -63,7 +63,7 @@ class _TitleSliverPageState extends State<TitleSliverPage> {
   }
   @override
   Widget build(BuildContext context) {
-    final fontSize = size.height/18 - offset/10;
+    final fontSize = size.height/35 - offset/35;
     return Stack(
       children: [
         SizedBox(

@@ -54,6 +54,8 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
 
   Reader? reader;
 
+  int lastTime = -400;
+
   HomeScreenBloc(BuildContext context) : super(CommonState.init()){
     playerInfo = PlayerInfo();
     player = AudioPlayer();
@@ -72,18 +74,21 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
       readerId = readersList.first.id;
     }
     player.positionStream.listen((event) {
-      ///Reader check add NEED TODO
-      if(player.playing){
-        final chapter = playerInfo.chapter;
-        final num = player.position.inMilliseconds/(player.duration?.inMilliseconds??1);
-        if(player.duration?.inMilliseconds != 0)
-          _updateC(chapter!.copyWith(percentage: num));
-        if(player.duration!=null)
-          if((player.duration!.inMilliseconds-player.position.inMilliseconds).abs()<=500 && player.duration!.inMilliseconds>0)
-            if(playerInfo.next!=null) {
-              this.add(HomeEvent.openChapter(playerInfo.next!, playerInfo.book!));
-        }
-      }
+      print("$lastTime ${(event.inMilliseconds-lastTime).abs()>=400} ${event.inMilliseconds-lastTime.abs()}");
+      if(reader==null)
+        if((event.inMilliseconds-lastTime).abs()>=400)
+          if(player.playing){
+            lastTime = event.inMilliseconds;
+            final chapter = playerInfo.chapter;
+            final num = player.position.inMilliseconds/(player.duration?.inMilliseconds??1);
+            if(player.duration?.inMilliseconds != 0)
+              _updateC(chapter!.copyWith(percentage: num));
+            if(player.duration!=null)
+              if((player.duration!.inMilliseconds-player.position.inMilliseconds).abs()<=500 && player.duration!.inMilliseconds>0)
+                if(playerInfo.next!=null) {
+                  this.add(HomeEvent.openChapter(playerInfo.next!, playerInfo.book!));
+            }
+          }
     });
 
 
@@ -107,6 +112,8 @@ class HomeScreenBloc extends Bloc<HomeEvent, BaseState> with BaseBloc{
 
   Stream<BaseState> _changePage(int page)async*{
     this.page = page;
+    if(page==0)
+      AppNavigation.booksPop();
     yield HomeState.pageChanged(page);
     yield CommonState.init();
   }

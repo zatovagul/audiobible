@@ -26,6 +26,10 @@ class AppNavigation{
   /// Root Navigator
   ///
   static void pop([result]) => _navigatorState.pop(result);
+  static void booksPop([result]) {
+    if(_booksNavigatorState.canPop())
+      return _booksNavigatorState.pop(result);
+  }
   static void toHome() => _navigatorState.pushNamedAndRemoveUntil(_RouteNames.home, (_) => false);
   static void toChapters(ChaptersArgs args) => _booksNavigatorState.pushNamed(_RouteNames.chapters, arguments: args);
 
